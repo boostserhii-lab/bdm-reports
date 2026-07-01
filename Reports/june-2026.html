@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sergey — BDM Report · June 2026</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #0C1117;
+    --surface:   #131B24;
+    --surface2:  #1C2733;
+    --border:    #243040;
+    --green:     #00C47A;
+    --green-dim: #00C47A22;
+    --amber:     #F5A322;
+    --amber-dim: #F5A32220;
+    --red:       #E04F4F;
+    --red-dim:   #E04F4F20;
+    --blue:      #4B9EFF;
+    --blue-dim:  #4B9EFF18;
+    --text:      #D8E4EF;
+    --muted:     #566D82;
+    --label:     #8A9BAB;
+    --mono:      'JetBrains Mono', 'Courier New', monospace;
+  }
+
+  html { font-size: 14px; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    line-height: 1.5;
+    min-height: 100vh;
+    padding: 32px 24px 64px;
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-header .dept { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .page-header h1 { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -.02em; }
+  .page-header .period { font-size: 11px; color: var(--label); margin-top: 4px; }
+  .page-header .meta { text-align: right; font-size: 11px; color: var(--muted); line-height: 1.8; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 36px; }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .section-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px; height: 18px;
+    background: var(--surface2);
+    border-radius: 3px;
+    font-size: 9px; color: var(--label); font-weight: 600;
+  }
+
+  /* ── KPI GRID ── */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+
+  .kpi-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 16px 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+  .kpi-card.green::before  { background: var(--green); }
+  .kpi-card.amber::before  { background: var(--amber); }
+  .kpi-card.red::before    { background: var(--red); }
+  .kpi-card.blue::before   { background: var(--blue); }
+  .kpi-card.neutral::before { background: var(--border); }
+
+  .kpi-name { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .kpi-value { font-size: 26px; font-weight: 700; line-height: 1; margin-bottom: 6px; font-variant-numeric: tabular-nums; }
+  .kpi-card.green  .kpi-value { color: var(--green); }
+  .kpi-card.amber  .kpi-value { color: var(--amber); }
+  .kpi-card.red    .kpi-value { color: var(--red); }
+  .kpi-card.blue   .kpi-value { color: var(--blue); }
+  .kpi-card.neutral .kpi-value { color: var(--text); }
+  .kpi-sub { font-size: 10px; color: var(--muted); line-height: 1.5; }
+
+  .kpi-target { display: inline-block; margin-top: 4px; font-size: 10px; padding: 1px 6px; border-radius: 3px; }
+  .kpi-target.miss  { background: var(--red-dim);   color: var(--red); }
+  .kpi-target.hit   { background: var(--green-dim); color: var(--green); }
+  .kpi-target.warn  { background: var(--amber-dim); color: var(--amber); }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  thead th { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 500; }
+  tbody tr { border-bottom: 1px solid var(--border); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: var(--surface2); }
+  tbody td { padding: 10px 12px; color: var(--text); font-variant-numeric: tabular-nums; vertical-align: middle; }
+  .tbl-card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+
+  /* ── PILLS ── */
+  .pill { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 500; white-space: nowrap; }
+  .pill-green  { background: var(--green-dim);  color: var(--green); border: 1px solid #00C47A33; }
+  .pill-amber  { background: var(--amber-dim);  color: var(--amber); border: 1px solid #F5A32233; }
+  .pill-red    { background: var(--red-dim);    color: var(--red);   border: 1px solid #E04F4F33; }
+  .pill-blue   { background: var(--blue-dim);   color: var(--blue);  border: 1px solid #4B9EFF33; }
+  .pill-muted  { background: var(--surface2);   color: var(--label); border: 1px solid var(--border); }
+
+  /* ── TWO COL ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  /* ── BAR ── */
+  .conv-bar-wrap { width: 100%; height: 6px; background: var(--surface2); border-radius: 3px; display: inline-block; vertical-align: middle; overflow: hidden; }
+  .conv-bar { height: 100%; border-radius: 3px; }
+
+  /* ── INITIATIVES ── */
+  .initiative-grid { display: flex; flex-direction: column; gap: 2px; }
+
+  .initiative-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .initiative-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 16px;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .initiative-header:hover { background: var(--surface2); }
+
+  .initiative-left { display: flex; align-items: center; gap: 10px; }
+
+  .initiative-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .initiative-status {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .status-done    { background: var(--green-dim); color: var(--green); }
+  .status-partial { background: var(--amber-dim); color: var(--amber); }
+  .status-started { background: var(--blue-dim);  color: var(--blue); }
+  .status-miss    { background: var(--red-dim);   color: var(--red); }
+
+  .initiative-arrow {
+    color: var(--muted);
+    font-size: 11px;
+    transition: transform .2s;
+    flex-shrink: 0;
+  }
+
+  .initiative-card.open .initiative-arrow { transform: rotate(180deg); }
+
+  .initiative-body {
+    display: none;
+    padding: 0 16px 16px;
+    border-top: 1px solid var(--border);
+  }
+  .initiative-card.open .initiative-body { display: block; }
+
+  .init-row { display: flex; gap: 8px; margin-top: 12px; }
+
+  .init-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+  .dot-green  { background: var(--green); }
+  .dot-amber  { background: var(--amber); }
+  .dot-red    { background: var(--red); }
+  .dot-blue   { background: var(--blue); }
+  .dot-muted  { background: var(--muted); }
+
+  .init-text { font-size: 12px; color: var(--label); line-height: 1.6; }
+  .init-text strong { color: var(--text); font-weight: 600; }
+
+  .init-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .stat-chip {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--label);
+  }
+  .stat-chip span { color: var(--text); font-weight: 600; }
+
+  /* ── AM UPSELL ── */
+  .am-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px; margin-top: 12px; }
+  .am-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 10px 12px;
+  }
+  .am-client { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .am-detail { font-size: 10px; color: var(--muted); }
+  .am-days { font-size: 18px; font-weight: 700; color: var(--green); margin-top: 4px; font-variant-numeric: tabular-nums; }
+
+  /* ── FOOTER ── */
+  .report-footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 10px; color: var(--muted); display: flex; justify-content: space-between; }
+
+  @media (max-width: 640px) {
+    .two-col { grid-template-columns: 1fr; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div>
+    <div class="dept">RetroStyle Games · BDM Department</div>
+    <h1>Sergey — Monthly Report</h1>
+    <div class="period">June 2026 · Stylized PC direction</div>
+  </div>
+  <div class="meta">
+    updated 2026-06-30<br>
+    aggregator<br>
+    BDM Dashboard
+  </div>
+</header>
+
+<!-- §01 TOTALS -->
+<section class="section">
+  <div class="section-label"><span class="section-num">01</span> Totals · $ Won, Funnel, Speed, Capacity</div>
+  <div class="kpi-grid">
+    <div class="kpi-card red">
+      <div class="kpi-name">$ Won · Outbound</div>
+      <div class="kpi-value">$1,000</div>
+      <div class="kpi-sub">1 signed · Korzinka + Outbound + Resu</div>
+      <span class="kpi-target miss">target $15,000</span>
+    </div>
+    <div class="kpi-card red">
+      <div class="kpi-name">$ Won · Whole Direction</div>
+      <div class="kpi-value">$3,270</div>
+      <div class="kpi-sub">incl. organic $2,270 · 2 org.</div>
+      <span class="kpi-target miss">target $15,000</span>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-name">Requests · June 2026</div>
+      <div class="kpi-value">19</div>
+      <div class="kpi-sub">by channel below</div>
+      <span class="kpi-target hit">target 17 ✓</span>
+    </div>
+    <div class="kpi-card amber">
+      <div class="kpi-name">Reached EST · Test · Deal</div>
+      <div class="kpi-value">8 · 2 · 0</div>
+      <div class="kpi-sub">target EST 7 · Test 2 · Deal 1</div>
+      <span class="kpi-target warn">Deal — miss</span>
+    </div>
+    <div class="kpi-card blue">
+      <div class="kpi-name">AM Unlock · June 2026</div>
+      <div class="kpi-value">$34,406</div>
+      <div class="kpi-sub">153 man-days · upsell of current</div>
+    </div>
+    <div class="kpi-card neutral">
+      <div class="kpi-name">$ Pipeline · Open</div>
+      <div class="kpi-value">$57,906</div>
+      <div class="kpi-sub">Pot $92,906 · in progress</div>
+    </div>
+  </div>
+</section>
+
+<!-- §02 SIGNED -->
+<section class="section">
+  <div class="section-label"><span class="section-num">02</span> Signed this Month</div>
+  <div class="two-col">
+    <div>
+      <div class="section-label" style="font-size:9px;margin-bottom:8px;">Outbound</div>
+      <div class="tbl-card">
+        <table>
+          <thead><tr><th>Client</th><th>Channel</th><th>$ Won</th><th>Stage</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>HyperVR Games</td>
+              <td><span class="pill pill-blue">Аутбаунд лідген</span></td>
+              <td style="color:var(--green);font-weight:600;">$1,000</td>
+              <td><span class="pill pill-amber">Test Confirmed</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div class="section-label" style="font-size:9px;margin-bottom:8px;">Organic (reference, outside outbound credit)</div>
+      <div class="tbl-card">
+        <table>
+          <thead><tr><th>Client</th><th>$ Won</th><th>Stage</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>626 Inteeractive</td>
+              <td style="color:var(--green);font-weight:600;">$1,620</td>
+              <td><span class="pill pill-amber">Test Confirmed</span></td>
+            </tr>
+            <tr>
+              <td>Tensori</td>
+              <td style="color:var(--green);font-weight:600;">$650</td>
+              <td><span class="pill pill-muted">MQL Interested</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- §03 REQUESTS BY CHANNEL -->
+<section class="section">
+  <div class="section-label"><span class="section-num">03</span> Requests by Channel · June 2026 · 19 total</div>
+  <div class="tbl-card" style="max-width:440px;">
+    <table>
+      <thead><tr><th>Channel</th><th>Requests</th><th>Share</th><th style="width:120px;"></th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="pill pill-amber">Корзинка</span></td>
+          <td style="font-weight:700;color:var(--amber);">12</td>
+          <td style="color:var(--label);">63%</td>
+          <td><div class="conv-bar-wrap"><div class="conv-bar" style="width:63%;background:var(--amber);"></div></div></td>
+        </tr>
+        <tr>
+          <td><span class="pill pill-green">Органіка</span></td>
+          <td style="font-weight:700;color:var(--green);">7</td>
+          <td style="color:var(--label);">37%</td>
+          <td><div class="conv-bar-wrap"><div class="conv-bar" style="width:37%;background:var(--green);"></div></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- §04 ACTIVE PIPELINE -->
+<section class="section">
+  <div class="section-label"><span class="section-num">04</span> Active Pipeline · EST / TEST / DEAL</div>
+
+  <div style="margin-bottom:10px;font-size:10px;color:var(--muted);">AT EST+ (8)</div>
+  <div class="tbl-card" style="margin-bottom:16px;">
+    <table>
+      <thead><tr><th>Company</th><th>Channel</th><th>Task</th><th>$ Pot</th><th>Stage</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Barn Fire Games</td>
+          <td><span class="pill pill-green">Органіка</span></td>
+          <td style="color:var(--muted);">Organic – Website Unknown</td>
+          <td>$42,000</td>
+          <td><span class="pill pill-muted">EST</span></td>
+        </tr>
+        <tr>
+          <td>Fahad Al Bedaiwi</td>
+          <td><span class="pill pill-green">Органіка</span></td>
+          <td style="color:var(--muted);">Organic – Unknown</td>
+          <td>$15,000</td>
+          <td><span class="pill pill-muted">EST</span></td>
+        </tr>
+        <tr>
+          <td>Urfan Ali</td>
+          <td><span class="pill pill-green">Органіка</span></td>
+          <td style="color:var(--muted);">Organic – Upwork Search</td>
+          <td>$1,000</td>
+          <td><span class="pill pill-muted">EST</span></td>
+        </tr>
+        <tr>
+          <td>ViewApp</td>
+          <td><span class="pill pill-amber">Корзинка</span></td>
+          <td style="color:var(--muted);">PC Vehicles 2026</td>
+          <td>$900</td>
+          <td><span class="pill pill-muted">EST</span></td>
+        </tr>
+        <tr>
+          <td>GAJO GROUP d.o.o.</td>
+          <td><span class="pill pill-green">Органіка</span></td>
+          <td style="color:var(--muted);">Organic – Website Unknown</td>
+          <td>$1</td>
+          <td><span class="pill pill-muted">EST</span></td>
+        </tr>
+        <tr>
+          <td>626 Inteeractive</td>
+          <td><span class="pill pill-green">Органіка</span></td>
+          <td style="color:var(--muted);">Organic – Website Unknown</td>
+          <td style="color:var(--green);font-weight:600;">$1,620</td>
+          <td><span class="pill pill-amber">Test Confirmed</span></td>
+        </tr>
+        <tr>
+          <td>Tensori</td>
+          <td><span class="pill pill-green">Органіка</span></td>
+          <td style="color:var(--muted);">Organic – Website Unknown</td>
+          <td style="color:var(--green);font-weight:600;">$650</td>
+          <td><span class="pill pill-amber">MQL Interested</span></td>
+        </tr>
+        <tr>
+          <td>HyperVR Games</td>
+          <td><span class="pill pill-blue">Аутбаунд</span></td>
+          <td style="color:var(--muted);">VR 2026</td>
+          <td style="color:var(--green);font-weight:600;">$1,000</td>
+          <td><span class="pill pill-amber">Test Confirmed</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-bottom:10px;font-size:10px;color:var(--muted);">AT TEST+ (2)</div>
+  <div class="tbl-card" style="margin-bottom:16px;">
+    <table>
+      <thead><tr><th>Company</th><th>Channel</th><th>$ Pot</th><th>Stage</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>626 Inteeractive</td>
+          <td><span class="pill pill-green">Органіка</span></td>
+          <td style="color:var(--green);font-weight:600;">$1,620</td>
+          <td><span class="pill pill-amber">Test Confirmed</span></td>
+        </tr>
+        <tr>
+          <td>HyperVR Games</td>
+          <td><span class="pill pill-blue">Аутбаунд</span></td>
+          <td style="color:var(--green);font-weight:600;">$1,000</td>
+          <td><span class="pill pill-amber">Test Confirmed</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="font-size:11px;color:var(--muted);padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:6px;">
+    AT DEAL (0) — No active deals this month.
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div style="height:1px;background:var(--border);margin:40px 0;"></div>
+
+<!-- §05 MONTH INITIATIVES -->
+<section class="section">
+  <div class="section-label"><span class="section-num">05</span> Month Initiatives · Key Moves · 8</div>
+
+  <div class="initiative-grid">
+
+    <!-- Resurrection -->
+    <div class="initiative-card open" onclick="this.classList.toggle('open')">
+      <div class="initiative-header">
+        <div class="initiative-left">
+          <div class="initiative-title">Resurrection — повернення спящих</div>
+          <span class="initiative-status status-partial">частково</span>
+        </div>
+        <span class="initiative-arrow">▼</span>
+      </div>
+      <div class="initiative-body">
+        <div class="init-stats">
+          <div class="stat-chip">Корзина: <span>76</span> компаній</div>
+          <div class="stat-chip">Ручна обробка: <span>12</span></div>
+          <div class="stat-chip">Відповіді (ручні): <span>2</span></div>
+          <div class="stat-chip">Дзвінки: <span>1</span></div>
+          <div class="stat-chip">На Дмитра: <span>64</span></div>
+          <div class="stat-chip">Відповіді (розсилка): <span>2</span></div>
+        </div>
+        <div class="init-row">
+          <div class="init-dot dot-green"></div>
+          <div class="init-text">Вся корзина Resurrection <strong>оброблена (76 компаній)</strong>. 12 компаній — оброблено вручну Сергієм: 2 відповіді, 1 дзвінок.</div>
+        </div>
+        <div class="init-row">
+          <div class="init-dot dot-amber"></div>
+          <div class="init-text">Залишок 64 — <strong>передано Дмитру</strong> на розсилку. Результат: 2 відповіді, без конкретики.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Корзинка теплих лідів -->
+    <div class="initiative-card open" onclick="this.classList.toggle('open')">
+      <div class="initiative-header">
+        <div class="initiative-left">
+          <div class="initiative-title">Корзинка тёплых лидов — закрити в тест</div>
+          <span class="initiative-status status-partial">перенос на липень</span>
+        </div>
+        <span class="initiative-arrow">▼</span>
+      </div>
+      <div class="initiative-body">
+        <div class="init-row">
+          <div class="init-dot dot-amber"></div>
+          <div class="init-text"><strong>Barn Fire Games</strong> — оцінку зроблено, презентацію зроблено. Очікуємо на рішення клієнта.</div>
+        </div>
+        <div class="init-row">
+          <div class="init-dot dot-amber"></div>
+          <div class="init-text"><strong>626 Interactive</strong> — через нестачу капасіті тест (ресьорч) почали тільки 29.06. Основний скоуп переноситься на липень.</div>
+        </div>
+        <div class="init-row">
+          <div class="init-dot dot-green"></div>
+          <div class="init-text"><strong>BZ1 Studio</strong> — клієнт чекає завершення тесту (02.07) і потім приймає рішення. Попередньо: ~25 man-days навантаження в липні.</div>
+        </div>
+        <div class="init-row">
+          <div class="init-dot dot-red"></div>
+          <div class="init-text"><strong>Bohemia Entertainment / Arma 4</strong> — після запиту на портфоліо відповіді не дали. Потрібно допінгувати.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Личні контакти -->
+    <div class="initiative-card open" onclick="this.classList.toggle('open')">
+      <div class="initiative-header">
+        <div class="initiative-left">
+          <div class="initiative-title">Личные контакты — прогрів зв'язків</div>
+          <span class="initiative-status status-partial">без результату</span>
+        </div>
+        <span class="initiative-arrow">▼</span>
+      </div>
+      <div class="initiative-body">
+        <div class="init-row">
+          <div class="init-dot dot-amber"></div>
+          <div class="init-text"><strong>Трек 1 (нові)</strong> — залишок по списку: ~10–12 адекватних компаній. Позитивних відповідей не отримано, лише «not looking anything at the moment».</div>
+        </div>
+        <div class="init-row">
+          <div class="init-dot dot-blue"></div>
+          <div class="init-text"><strong>Mob Entertainment</strong> — аутсорс поки не потрібен. Домовились законнектитись пізніше.</div>
+        </div>
+        <div class="init-row">
+          <div class="init-dot dot-blue"></div>
+          <div class="init-text"><strong>Krafton</strong> — основний контакт не шукає аутсорс. Пробую зайти через інший контакт.</div>
+        </div>
+        <div class="init-row">
+          <div class="init-dot dot-blue"></div>
+          <div class="init-text"><strong>Big Point</strong> — оновлюють внутрішню політику по вибору аутсорс-команди. Законнектитись у липні.</div>
+        </div>
+        <div class="init-row">
+          <div class="init-dot dot-blue"></div>
+          <div class="init-text"><strong>BKOM</strong> — наразі не шукають, але можуть звернутись протягом року.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Холодні ліди -->
+    <div class="initiative-card open" onclick="this.classList.toggle('open')">
+      <div class="initiative-header">
+        <div class="initiative-left">
+          <div class="initiative-title">Холодные лиды (201) — масс-сегментація</div>
+          <span class="initiative-status status-started">в процесі</span>
+        </div>
+        <span class="initiative-arrow">▼</span>
+      </div>
+      <div class="initiative-body">
+        <div class="init-row">
+          <div class="init-dot dot-amber"></div>
+          <div class="init-text">Спроба AI-сегментації через Pipedrive — <strong>вийшло не дуже</strong> через брак контексту в базі. Перейшов на ручний режим пропінгу.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Портфоліо -->
+    <div class="initiative-card open" onclick="this.classList.toggle('open')">
+      <div class="initiative-header">
+        <div class="initiative-left">
+          <div class="initiative-title">Портфолио — централізація бази</div>
+          <span class="initiative-status status-started">початкова стадія</span>
+        </div>
+        <span class="initiative-arrow">▼</span>
+      </div>
+      <div class="initiative-body">
+        <div class="init-row">
+          <div class="init-dot dot-blue"></div>
+          <div class="init-text">Почато роботу з AI по ініціативі. Поки на початковій стадії. Ціль — <strong>довести до адекватного результату до середини наступного тижня</strong>.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Органіка + Реклама -->
+    <div class="initiative-card open" onclick="this.classList.toggle('open')">
+      <div class="initiative-header">
+        <div class="initiative-left">
+          <div class="initiative-title">Органика + Реклама — синк BDM+МКТ</div>
+          <span class="initiative-status status-partial">запущено, результат слабкий</span>
+        </div>
+        <span class="initiative-arrow">▼</span>
+      </div>
+      <div class="initiative-body">
+        <div class="init-stats">
+          <div class="stat-chip">Реклама — кліки: <span style="color:var(--red);">0</span></div>
+          <div class="stat-chip">Розсилка: <span>186</span> компаній</div>
+          <div class="stat-chip">Відповіді: <span>15</span></div>
+          <div class="stat-chip">Конкретика: <span style="color:var(--red);">0</span></div>
+        </div>
+        <div class="init-row">
+          <div class="init-dot dot-green"></div>
+          <div class="init-text">Зібрано список компаній зі Steam (заплановані релізи) + Kickstarter/Crunchbase (залучають фінансування). <strong>База для рекламних кампаній підготовлена.</strong></div>
+        </div>
+        <div class="init-row">
+          <div class="init-dot dot-red"></div>
+          <div class="init-text"><strong>Рекламна кампанія запущена</strong> — проміжний результат слабкий: <strong>0 кліків</strong>. На наступному тижні — розбір причин, внесення змін.</div>
+        </div>
+        <div class="init-row">
+          <div class="init-dot dot-amber"></div>
+          <div class="init-text"><strong>Розсилка по 186 компаніях</strong> — 15 відповідей, без конкретики. Також потрібен аналіз і коригування.</div>
+        </div>
+        <div class="init-row">
+          <div class="init-dot dot-green"></div>
+          <div class="init-text">Підготовлено <strong>креативи для ретаргетингу</strong> — запущено в роботу.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AM Upsell -->
+    <div class="initiative-card open" onclick="this.classList.toggle('open')">
+      <div class="initiative-header">
+        <div class="initiative-left">
+          <div class="initiative-title">AM — Upsell поточних клієнтів</div>
+          <span class="initiative-status status-done">виконано</span>
+        </div>
+        <span class="initiative-arrow">▼</span>
+      </div>
+      <div class="initiative-body">
+        <div class="am-grid">
+          <div class="am-card">
+            <div class="am-client">Super Pebble</div>
+            <div class="am-detail">3D</div>
+            <div class="am-days">41 md</div>
+          </div>
+          <div class="am-card">
+            <div class="am-client">BG Productions</div>
+            <div class="am-detail">3D</div>
+            <div class="am-days">20 md</div>
+          </div>
+          <div class="am-card">
+            <div class="am-client">Ascendancy</div>
+            <div class="am-detail">2D</div>
+            <div class="am-days">38 md</div>
+          </div>
+          <div class="am-card">
+            <div class="am-client">Battle Horn</div>
+            <div class="am-detail">2D + 3D</div>
+            <div class="am-days">~60 md</div>
+          </div>
+        </div>
+        <div class="init-row" style="margin-top:12px;">
+          <div class="init-dot dot-green"></div>
+          <div class="init-text">Загальний апсейл: <strong>~159 man-days</strong> навантаження оформлено по поточних клієнтах.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Secondary -->
+    <div class="initiative-card" onclick="this.classList.toggle('open')">
+      <div class="initiative-header">
+        <div class="initiative-left">
+          <div class="initiative-title">Secondary — Epic Games + EA XDI</div>
+          <span class="initiative-status status-miss">не основний фокус</span>
+        </div>
+        <span class="initiative-arrow">▼</span>
+      </div>
+      <div class="initiative-body">
+        <div class="init-row">
+          <div class="init-dot dot-muted"></div>
+          <div class="init-text">Неосновний фокус місяця. Задача — <strong>оновити портфоліо-матеріали</strong> для Epic Games та EA XDI.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="report-footer">
+  <span>BDM Department · RetroStyle Games</span>
+  <span>June 2026 · updated 2026-06-30</span>
+</footer>
+
+</body>
+</html>
