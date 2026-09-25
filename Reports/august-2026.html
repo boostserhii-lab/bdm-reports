@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sergey — BDM August 2026</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0C1117;--surface:#131B24;--surface2:#1C2733;--border:#243040;
+--green:#00C47A;--green-dim:#00C47A22;--amber:#F5A322;--amber-dim:#F5A32220;
+--red:#E04F4F;--red-dim:#E04F4F20;--blue:#4B9EFF;--blue-dim:#4B9EFF18;
+--text:#D8E4EF;--muted:#566D82;--label:#8A9BAB;
+--mono:ui-monospace,"JetBrains Mono","SF Mono",Menlo,Consolas,"Courier New",monospace}
+html{font-size:14px}
+body{background:var(--bg);color:var(--text);font-family:var(--mono);line-height:1.5;
+padding:32px 24px 64px;max-width:1280px;margin:0 auto}
+.page-header{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;
+margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.dept{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+h1{font-size:22px;font-weight:700;letter-spacing:-.02em;text-wrap:balance}
+.period{font-size:11px;color:var(--label);margin-top:4px}
+.meta{text-align:right;font-size:11px;color:var(--muted);line-height:1.8}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}
+nav a{font-size:11px;padding:5px 12px;border-radius:5px;border:1px solid var(--border);
+background:var(--surface);color:var(--label);text-decoration:none}
+nav a:hover{background:var(--surface2);color:var(--text)}
+nav a.on{background:var(--blue-dim);border-color:#4B9EFF44;color:var(--blue)}
+nav a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.section{margin-bottom:36px}
+.section-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.num{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;
+background:var(--surface2);border-radius:3px;font-size:9px;color:var(--label);font-weight:600}
+.thesis{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:18px 20px}
+.thesis .goal{font-size:12px;color:var(--label);margin-bottom:10px}
+.thesis .res{font-size:15px;line-height:1.6;color:var(--green);font-weight:600;text-wrap:pretty}
+.thesis .plain{font-size:14px;line-height:1.7;color:var(--text);text-wrap:pretty}
+.clients{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.client{background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:8px 12px;max-width:340px}
+.client b{font-size:12px;color:var(--text)}
+.client span{display:block;font-size:10px;color:var(--muted);margin-top:2px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:6px;
+padding:16px 16px 14px;position:relative;overflow:hidden}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--border)}
+.kpi.green::before{background:var(--green)}.kpi.amber::before{background:var(--amber)}
+.kpi.red::before{background:var(--red)}.kpi.blue::before{background:var(--blue)}
+.kpi .lbl{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.kpi .val{font-size:25px;font-weight:700;line-height:1;margin-bottom:6px;font-variant-numeric:tabular-nums}
+.kpi.green .val{color:var(--green)}.kpi.amber .val{color:var(--amber)}
+.kpi.red .val{color:var(--red)}.kpi.blue .val{color:var(--blue)}
+.kpi .sub{font-size:10px;color:var(--muted);line-height:1.5}
+.bar{height:4px;background:var(--surface2);border-radius:2px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:2px}
+.tbl-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--border);border-radius:6px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+text-align:left;padding:9px 12px;border-bottom:1px solid var(--border);font-weight:500;white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--border);font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:none}
+.pill{display:inline-block;font-size:10px;padding:2px 8px;border-radius:20px;white-space:nowrap}
+.p-green{background:var(--green-dim);color:var(--green);border:1px solid #00C47A33}
+.p-amber{background:var(--amber-dim);color:var(--amber);border:1px solid #F5A32233}
+.p-red{background:var(--red-dim);color:var(--red);border:1px solid #E04F4F33}
+.p-blue{background:var(--blue-dim);color:var(--blue);border:1px solid #4B9EFF33}
+.p-muted{background:var(--surface2);color:var(--label);border:1px solid var(--border)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:15px 16px;
+border-top:2px solid var(--border)}
+.card.green{border-top-color:var(--green)}.card.amber{border-top-color:var(--amber)}
+.card.red{border-top-color:var(--red)}.card.blue{border-top-color:var(--blue)}
+.card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px}
+.card-title{font-size:13px;font-weight:600;color:var(--text);text-wrap:balance}
+.eyebrow{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.card-body{font-size:12px;line-height:1.65;color:var(--label);text-wrap:pretty}
+.card-body.want{color:var(--muted);margin-bottom:10px}
+.init{background:var(--surface);border:1px solid var(--border);border-radius:6px;
+padding:15px 16px;margin-bottom:10px}
+.init h3{font-size:13px;font-weight:600;margin-bottom:6px}
+.init p{font-size:12px;line-height:1.65;color:var(--label);text-wrap:pretty}
+.subcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;margin-top:10px}
+.subcard{background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:10px 12px}
+.subcard b{font-size:12px;color:var(--text)}
+.subcard span{display:block;font-size:10px;color:var(--muted);margin-top:3px;line-height:1.5}
+footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--border);
+font-size:10px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:640px){.kpi-grid{grid-template-columns:1fr 1fr}.meta{text-align:left}}
+</style>
+</head>
+<body>
+<header class="page-header">
+  <div>
+    <div class="dept">RetroStyle Games · BDM Department</div>
+    <h1>Sergey — Monthly Results</h1>
+    <div class="period">August 2026 · Stylized PC/Console</div>
+  </div>
+  <div class="meta">Outbound BDM<br>snapshot 2026-09-25<br>source: BDM Dashboard</div>
+</header>
+<nav><a href='june-2026.html'>June 2026 · results</a><a href='july-2026.html'>July 2026 · results</a><a href='august-2026.html' class='on'>August 2026 · results</a><a href='september-2026.html'>September 2026 · plan</a></nav>
+<section class='section'><div class='section-label'><span class='num'>01</span> What we count as success</div><div class='thesis'><div class='goal'>Цель: Закрыть текущие коммуникации, запустить 4 волны рассылок по новой тактике (сначала реклама, потом рассылка) и масштабировать холодную корзинку</div><div class='res'>→ Requests 25 (цель 25 ✓), EST 13 / Test 3 / Deal 1. $Won outbound $2,152, по направлению $16,402. AM Unlock $116,149 / 418 md — 232% цели. Главная сделка месяца — Deathcult Games ($10,500), скоуп уже в работе</div><div class='clients'><div class='client'><b>Deathcult Games</b><span>Закрыли клиента — скоуп в работе, $10,500 (проходит как органика)</span></div><div class='client'><b>Tartan Paint Games</b><span>Outbound лидген — $1,747, Success of Test → Deal</span></div><div class='client'><b>Joshua Norton</b><span>Органика — $3,750, Test Confirmed</span></div><div class='client'><b>PSB entertainment</b><span>Корзинка — $405, прогрев + IL</span></div></div></div></section><section class='section'><div class='section-label'><span class='num'>02</span> Totals · August 2026 <span style='text-transform:none;letter-spacing:0'>(факт vs цель месяца)</span></div><div class='kpi-grid'><div class='kpi green'><div class='lbl'>$ Won · outbound</div><div class='val'>$12,652</div><div class='sub'>3 signed · цель $10,000</div><div class='bar'><i style='width:100%;background:var(--green)'></i></div></div><div class='kpi green'><div class='lbl'>$ Won · whole direction</div><div class='val'>$16,402</div><div class='sub'>incl. organic $3,750</div></div><div class='kpi green'><div class='lbl'>Requests</div><div class='val'>25</div><div class='sub'>new_req · цель 25</div><div class='bar'><i style='width:100%;background:var(--green)'></i></div></div><div class='kpi '><div class='lbl'>Reached EST · Test · Deal</div><div class='val'><span style='color:var(--amber)'>13</span> · <span style='color:var(--blue)'>3</span> · <span style='color:var(--green)'>1</span></div><div class='sub'>цель 15 · 5 · 1</div></div><div class='kpi blue'><div class='lbl'>AM unlock</div><div class='val'>$116,149</div><div class='sub'>418 man-days · upsell of current</div></div><div class='kpi '><div class='lbl'>$ Pipeline · open</div><div class='val'>$16,504</div><div class='sub'>$ Pot $32,504 · in progress</div></div></div><div class='section-label' style='margin-top:22px'><span class='num'>·</span> Who we signed this month · outbound</div><div class='tbl-wrap'><table><thead><tr><th>Client</th><th>Channel</th><th>$ Pot</th><th>$ Won</th><th>Stage</th></tr></thead><tbody><tr><td style='font-weight:600'>Deathcult Games</td><td><span class='pill p-blue'>Корзинка</span></td><td style='color:var(--muted)'>$10,500</td><td style='color:var(--green);font-weight:600'>$10,500</td><td><span class='pill p-amber'>Test Confirmed</span></td></tr><tr><td style='font-weight:600'>Tartan Paint Games</td><td><span class='pill p-blue'>Аутбаунд лидген</span></td><td style='color:var(--muted)'>$5,200</td><td style='color:var(--green);font-weight:600'>$1,747</td><td><span class='pill p-amber'>Success of Test - Deal</span></td></tr><tr><td style='font-weight:600'>PSB entertainment</td><td><span class='pill p-blue'>Корзинка</span></td><td style='color:var(--muted)'>$405</td><td style='color:var(--green);font-weight:600'>$405</td><td><span class='pill p-amber'>Прогрев + IL</span></td></tr></tbody></table></div><div class='section-label' style='margin-top:22px'><span class='num'>·</span> Organic · $ Won <span style='text-transform:none;letter-spacing:0'>(reference, outside outbound credit)</span></div><div class='tbl-wrap'><table><thead><tr><th>Client</th><th>$ Won</th><th>Stage</th></tr></thead><tbody><tr><td style='font-weight:600'>Joshua Norton</td><td style='color:var(--green);font-weight:600'>$3,750</td><td><span class='pill p-muted'>Test Confirmed</span></td></tr></tbody></table></div></section><section class='section'><div class='section-label'><span class='num'>03</span> Production load · 3D <span style='text-transform:none;letter-spacing:0'>(PM-репорт · финал августа)</span></div><div class='kpi-grid'><div class='kpi '><div class='lbl'>Team capacity</div><div class='val'>357<span style='font-size:12px'>md</span></div><div class='sub'>available capacity</div></div><div class='kpi blue'><div class='lbl'>Should generate · trend</div><div class='val'>589<span style='font-size:12px'>md</span></div><div class='sub'>growth-trend target</div></div><div class='kpi '><div class='lbl'>Billable now</div><div class='val'>357<span style='font-size:12px'>md</span></div><div class='sub'>+ To Load 0 md</div></div><div class='kpi red'><div class='lbl'>Gap vs trend</div><div class='val'>-39.4%</div><div class='sub'>vs trend</div></div></div><p style='font-size:12px;color:var(--label);margin-top:12px;line-height:1.65'>Confirmed 339 · billable 357 из тренда 589 (61%) → −232 md. Месяц фактически закрыт: свободных рук по всей команде 30 md, tentative 6 md</p></section><section class='section'><div class='section-label'><span class='num'>04</span> Hypotheses &amp; bets · хотели vs получили <span style='text-transform:none;letter-spacing:0'>(13)</span></div><div class='cards'><div class='card amber'><div class='card-head'><div class='card-title'>План рассылок — 4 волны</div><span class='pill p-amber'>ЧАСТИЧНО</span></div><div class='eyebrow'>🎯 Хотели</div><div class='card-body want'>Стилизация (пул 1000), Реализм (Готика + Titan Quest), Стилизованный перс (Blizzard-related), Gamescom пост-ивент (идея)</div><div class='eyebrow'>📋 Результат</div><div class='card-body' style='color:var(--text)'>Выполнены все волны, кроме «Стилизованного перса» — сместили акцент на Gamescom пост-ивент и запустили её вместо него</div></div><div class='card amber'><div class='card-head'><div class='card-title'>Закрытие текущих коммуникаций</div><span class='pill p-amber'>ЧАСТИЧНО</span></div><div class='eyebrow'>🎯 Хотели</div><div class='card-body want'>Deathcult Games, Outplay (вернуть), Rezzil (ещё скоуп), Chronyx (первый скоуп), Etermax (DLC)</div><div class='eyebrow'>📋 Результат</div><div class='card-body' style='color:var(--text)'>Deathcult Games — закрыли клиента, скоуп в работе ($10,500). Outplay — у клиента внутренние изменения, не готов сейчас продолжать работу. Rezzil — в процессе уточнения, клиент долго отвечает. Chronyx Studios — пока не готовы давать скоуп, вернуться ближе к концу года. Etermax — в процессе уточнения</div></div><div class='card amber'><div class='card-head'><div class='card-title'>Sony — заход на тест</div><span class='pill p-amber'>ЧАСТИЧНО</span></div><div class='eyebrow'>🎯 Хотели</div><div class='card-body want'>На звонке пропушить услуги, попробовать закоммититься на тест</div><div class='eyebrow'>📋 Результат</div><div class='card-body' style='color:var(--text)'>Звонок провели, форму апдейтнули. Договорились, что лучше всего постучаться к ним в октябре/ноябре</div></div><div class='card amber'><div class='card-head'><div class='card-title'>Холодная корзинка — масштабирование</div><span class='pill p-amber'>ЧАСТИЧНО</span></div><div class='eyebrow'>🎯 Хотели</div><div class='card-body want'>Продолжать ручной пропинг, масштабировать количество дилов</div><div class='eyebrow'>📋 Результат</div><div class='card-body' style='color:var(--text)'>По холодной корзинке работал, но вернуть кого-то в коммуникацию не удалось</div></div><div class='card red'><div class='card-head'><div class='card-title'>AI-стилизованный хаб</div><span class='pill p-red'>НЕ ЗАШЛО</span></div><div class='eyebrow'>🎯 Хотели</div><div class='card-body want'>Допилить то, что сделал — работает коряво</div><div class='eyebrow'>📋 Результат</div><div class='card-body' style='color:var(--text)'>Не продвинулось — перенос на сентябрь</div></div><div class='card amber'><div class='card-head'><div class='card-title'>Пропинг личных контактов</div><span class='pill p-amber'>ЧАСТИЧНО</span></div><div class='eyebrow'>🎯 Хотели</div><div class='card-body want'>Big Point (тест после звонка), E-line (добиться теста)</div><div class='eyebrow'>📋 Результат</div><div class='card-body' style='color:var(--text)'>Big Point — по инициативе клиента звонок перенесли на сентябрь. E-line — не удалось восстановить коммуникацию</div></div><div class='card amber'><div class='card-head'><div class='card-title'>Органика + Реклама — новая тактика</div><span class='pill p-amber'>ЧАСТИЧНО</span></div><div class='eyebrow'>🎯 Хотели</div><div class='card-body want'>Сначала реклама, потом рассылка — проверить, поднимет ли отклик</div><div class='eyebrow'>📋 Результат</div><div class='card-body' style='color:var(--text)'>Глобально не очень, но есть позитивные сдвиги именно на LinkedIn. Realistic: с рекламой (Upcoming + Relaunch) Acc 18.8% / Msg Ans 24.0% против 11.5% / 9.8% без неё — реклама явно помогает. Stylized: Msg Ans выше с рекламой (22.5% против 13.1%), но Acc ниже (8.0% против 16.3%). Email эффекта не дал: Stylized 1.1% = baseline, Realistic 0.75% против baseline 1.0%</div></div><div class='card green'><div class='card-head'><div class='card-title'>AM Upsell</div><span class='pill p-green'>СРАБОТАЛО</span></div><div class='eyebrow'>🎯 Хотели</div><div class='card-body want'>Вернуть тех, кто поставил работу на паузу; апсейл у активных клиентов. Июль закрыли на 65%</div><div class='eyebrow'>📋 Результат</div><div class='card-body' style='color:var(--text)'>По дашборду AM Unlock $116,149 / 418 man-days при цели $50,000 — 232% цели и рост втрое к июлю ($38,977 / 272 md)</div></div><div class='card amber'><div class='card-head'><div class='card-title'>Epic Games + EA XDI — опросники</div><span class='pill p-amber'>ЧАСТИЧНО</span></div><div class='eyebrow'>🎯 Хотели</div><div class='card-body want'>Наконец заполнить опросники по Epic Games и EA XDI</div><div class='eyebrow'>📋 Результат</div><div class='card-body' style='color:var(--text)'>В августе заполнил опросники для Sony и платформы XDS — они были более релевантными. Epic Games и EA XDI переносятся на сентябрь</div></div><div class='card red'><div class='card-head'><div class='card-title'>🚧 Блокер: внутренние проблемы на стороне клиентов</div><span class='pill p-red'>НЕ ЗАШЛО</span></div><div class='eyebrow'>🎯 Хотели</div><div class='card-body want'>Блокер / проблема месяца</div><div class='eyebrow'>📋 Результат</div><div class='card-body' style='color:var(--text)'>Неготовность продолжать работу, начать её или дать новый скоуп из-за внутренних изменений у клиента — Outplay, Chronyx, Deathcult</div></div><div class='card red'><div class='card-head'><div class='card-title'>🚧 Блокер: задержки с ответами (отпуска, Gamescom)</div><span class='pill p-red'>НЕ ЗАШЛО</span></div><div class='eyebrow'>🎯 Хотели</div><div class='card-body want'>Блокер / проблема месяца</div><div class='eyebrow'>📋 Результат</div><div class='card-body' style='color:var(--text)'>Клиенты долго отвечают: отпуска и «а мы на Gamescom» — Tarock Interactive, Rezzil, Etermax</div></div><div class='card green'><div class='card-head'><div class='card-title'>✅ Вывод: допушить самых тёплых</div><span class='pill p-green'>СРАБОТАЛО</span></div><div class='eyebrow'>🎯 Хотели</div><div class='card-body want'>Вывод / корректив на сентябрь</div><div class='eyebrow'>📋 Результат</div><div class='card-body' style='color:var(--text)'>Отпуска закончились — допушить самых тёплых: Tarock Interactive, Rezzil, Etermax</div></div><div class='card green'><div class='card-head'><div class='card-title'>✅ Вывод: пересобрать контент рассылок и рекламы</div><span class='pill p-green'>СРАБОТАЛО</span></div><div class='eyebrow'>🎯 Хотели</div><div class='card-body want'>Вывод / корректив на сентябрь</div><div class='eyebrow'>📋 Результат</div><div class='card-body' style='color:var(--text)'>Посмотреть, что можно поправить в контенте рассылок и рекламы — возможно именно это не даёт улучшить результат по лидам. Нужен синк с маркетингом</div></div></div></section><section class='section'><div class='section-label'><span class='num'>05</span> Tooling</div><p style='font-size:12px;color:var(--label);margin-bottom:12px'>AI-стилизованный хаб не продвинулся — переносим в сентябрь</p><div class='cards'><div class='card red'><div class='card-head'><div class='card-title'>AI-стилизованный хаб</div><span class='pill p-red'>НЕ СДЕЛАНО</span></div><div class='card-body'>Работает коряво, нужно допилить. Перенос на сентябрь</div></div></div></section>
+<footer><span>BDM Department · RetroStyle Games</span><span>August 2026 · results</span></footer>
+</body>
+</html>

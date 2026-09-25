@@ -1,0 +1,152 @@
+{
+  "2026-06": {
+    "won_outbound": 1000.0,
+    "won_organic": 2270.0,
+    "signed": [
+      {
+        "company": "HyperVR Games",
+        "channel": "Аутбаунд лидген",
+        "pot": 1000.0,
+        "won": 1000.0,
+        "stage": "Test Confirmed"
+      }
+    ],
+    "organic": [
+      {
+        "company": "626 Inteeractive",
+        "won": 1620.0,
+        "stage": "Test Confirmed"
+      },
+      {
+        "company": "Tensori",
+        "won": 650.0,
+        "stage": "MQL Interested"
+      }
+    ],
+    "requests": 19,
+    "reached": {
+      "mql": 19,
+      "sql": 11,
+      "est": 8,
+      "test": 2,
+      "deal": 0,
+      "lost": 0
+    },
+    "pipeline": 57906.0,
+    "won_pot": 92906.0,
+    "am_unlock": {
+      "usd": 34406.0,
+      "chel_dni": 153.0
+    }
+  },
+  "2026-07": {
+    "won_outbound": 14701.0,
+    "won_organic": 2745.0,
+    "signed": [
+      {
+        "company": "Rezzil",
+        "channel": "Аутбаунд лидген",
+        "pot": 5600.0,
+        "won": 5600.0,
+        "stage": "Test Confirmed"
+      },
+      {
+        "company": "Tartan Paint Games",
+        "channel": "Аутбаунд лидген",
+        "pot": 5200.0,
+        "won": 5200.0,
+        "stage": "Test Confirmed"
+      },
+      {
+        "company": "Outplay Entertainment Ltd",
+        "channel": "Корзинка",
+        "pot": 2725.0,
+        "won": 2725.0,
+        "stage": "Test Confirmed"
+      },
+      {
+        "company": "HyperVR Games",
+        "channel": "Аутбаунд лидген",
+        "pot": 1000.0,
+        "won": 1176.0,
+        "stage": "Success of Test - Deal"
+      }
+    ],
+    "organic": [
+      {
+        "company": "626 Inteeractive",
+        "won": 1620.0,
+        "stage": "Прогрев + IL"
+      },
+      {
+        "company": "PlayKigai",
+        "won": 1125.0,
+        "stage": "Test Confirmed"
+      }
+    ],
+    "requests": 29,
+    "reached": {
+      "mql": 28,
+      "sql": 21,
+      "est": 21,
+      "test": 6,
+      "deal": 2,
+      "lost": 0
+    },
+    "pipeline": 53008.0,
+    "won_pot": 64059.0,
+    "am_unlock": {
+      "usd": 38977.0,
+      "chel_dni": 272.0
+    }
+  },
+  "2026-08": {
+    "won_outbound": 12652.0,
+    "won_organic": 3750.0,
+    "signed": [
+      {
+        "company": "Deathcult Games",
+        "channel": "Корзинка",
+        "pot": 10500.0,
+        "won": 10500.0,
+        "stage": "Test Confirmed"
+      },
+      {
+        "company": "Tartan Paint Games",
+        "channel": "Аутбаунд лидген",
+        "pot": 5200.0,
+        "won": 1747.0,
+        "stage": "Success of Test - Deal"
+      },
+      {
+        "company": "PSB entertainment",
+        "channel": "Корзинка",
+        "pot": 405.0,
+        "won": 405.0,
+        "stage": "Прогрев + IL"
+      }
+    ],
+    "organic": [
+      {
+        "company": "Joshua Norton",
+        "won": 3750.0,
+        "stage": "Test Confirmed"
+      }
+    ],
+    "requests": 25,
+    "reached": {
+      "mql": 26,
+      "sql": 13,
+      "est": 13,
+      "test": 3,
+      "deal": 1,
+      "lost": 0
+    },
+    "pipeline": 16504.0,
+    "won_pot": 32504.0,
+    "am_unlock": {
+      "usd": 116149.0,
+      "chel_dni": 418.0
+    }
+  }
+}
