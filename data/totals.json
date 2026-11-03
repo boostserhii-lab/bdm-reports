@@ -148,5 +148,92 @@
       "usd": 116149.0,
       "chel_dni": 418.0
     }
+  },
+  "2026-09": {
+    "won_outbound": 7013.0,
+    "won_organic": 5165.0,
+    "signed": [
+      {
+        "company": "E-Line Media",
+        "channel": "Аутбаунд лидген",
+        "pot": 5050.0,
+        "won": 7013.0,
+        "stage": "Test Confirmed"
+      }
+    ],
+    "organic": [
+      {
+        "company": "Animagrad Animation Studio",
+        "won": 2000.0,
+        "stage": "Test Confirmed"
+      },
+      {
+        "company": "Victor Blanco",
+        "won": 1540.0,
+        "stage": "Success of Test - Deal"
+      },
+      {
+        "company": "Abdelrahman Alwhede",
+        "won": 875.0,
+        "stage": "Test Confirmed"
+      },
+      {
+        "company": "Black Smoke Studios Oy",
+        "won": 750.0,
+        "stage": "Test Confirmed"
+      }
+    ],
+    "requests": 28,
+    "reached": {
+      "mql": 28,
+      "sql": 20,
+      "est": 20,
+      "test": 8,
+      "deal": 2,
+      "lost": 0
+    },
+    "pipeline": 47517.0,
+    "won_pot": 57317.0,
+    "am_unlock": {
+      "usd": 0.0,
+      "chel_dni": 19.0
+    }
+  },
+  "2026-10": {
+    "won_outbound": 0.0,
+    "won_organic": 19075.0,
+    "signed": [],
+    "organic": [
+      {
+        "company": "Tom Hansen",
+        "won": 11825.0,
+        "stage": "Success of Test - Deal"
+      },
+      {
+        "company": "Abdelrahman Alwhede",
+        "won": 6250.0,
+        "stage": "Test Confirmed"
+      },
+      {
+        "company": "GoPlay",
+        "won": 1000.0,
+        "stage": "Test Confirmed"
+      }
+    ],
+    "requests": 26,
+    "reached": {
+      "mql": 30,
+      "sql": 18,
+      "est": 17,
+      "test": 2,
+      "deal": 1,
+      "lost": 0
+    },
+    "pipeline": 77011.0,
+    "won_pot": 97012.0,
+    "am_unlock": {
+      "usd": 77285.0,
+      "chel_dni": 271.0
+    }
   }
 }

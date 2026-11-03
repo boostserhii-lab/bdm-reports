@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sergey — BDM November 2026</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0C1117;--surface:#131B24;--surface2:#1C2733;--border:#243040;
+--green:#00C47A;--green-dim:#00C47A22;--amber:#F5A322;--amber-dim:#F5A32220;
+--red:#E04F4F;--red-dim:#E04F4F20;--blue:#4B9EFF;--blue-dim:#4B9EFF18;
+--text:#D8E4EF;--muted:#566D82;--label:#8A9BAB;
+--mono:ui-monospace,"JetBrains Mono","SF Mono",Menlo,Consolas,"Courier New",monospace}
+html{font-size:14px}
+body{background:var(--bg);color:var(--text);font-family:var(--mono);line-height:1.5;
+padding:32px 24px 64px;max-width:1280px;margin:0 auto}
+.page-header{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;
+margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.dept{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+h1{font-size:22px;font-weight:700;letter-spacing:-.02em;text-wrap:balance}
+.period{font-size:11px;color:var(--label);margin-top:4px}
+.meta{text-align:right;font-size:11px;color:var(--muted);line-height:1.8}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}
+nav a{font-size:11px;padding:5px 12px;border-radius:5px;border:1px solid var(--border);
+background:var(--surface);color:var(--label);text-decoration:none}
+nav a:hover{background:var(--surface2);color:var(--text)}
+nav a.on{background:var(--blue-dim);border-color:#4B9EFF44;color:var(--blue)}
+nav a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.section{margin-bottom:36px}
+.section-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.num{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;
+background:var(--surface2);border-radius:3px;font-size:9px;color:var(--label);font-weight:600}
+.thesis{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:18px 20px}
+.thesis .goal{font-size:12px;color:var(--label);margin-bottom:10px}
+.thesis .res{font-size:15px;line-height:1.6;color:var(--green);font-weight:600;text-wrap:pretty}
+.thesis .plain{font-size:14px;line-height:1.7;color:var(--text);text-wrap:pretty}
+.clients{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.client{background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:8px 12px;max-width:340px}
+.client b{font-size:12px;color:var(--text)}
+.client span{display:block;font-size:10px;color:var(--muted);margin-top:2px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:6px;
+padding:16px 16px 14px;position:relative;overflow:hidden}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--border)}
+.kpi.green::before{background:var(--green)}.kpi.amber::before{background:var(--amber)}
+.kpi.red::before{background:var(--red)}.kpi.blue::before{background:var(--blue)}
+.kpi .lbl{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.kpi .val{font-size:25px;font-weight:700;line-height:1;margin-bottom:6px;font-variant-numeric:tabular-nums}
+.kpi.green .val{color:var(--green)}.kpi.amber .val{color:var(--amber)}
+.kpi.red .val{color:var(--red)}.kpi.blue .val{color:var(--blue)}
+.kpi .sub{font-size:10px;color:var(--muted);line-height:1.5}
+.bar{height:4px;background:var(--surface2);border-radius:2px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:2px}
+.tbl-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--border);border-radius:6px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+text-align:left;padding:9px 12px;border-bottom:1px solid var(--border);font-weight:500;white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--border);font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:none}
+.pill{display:inline-block;font-size:10px;padding:2px 8px;border-radius:20px;white-space:nowrap}
+.p-green{background:var(--green-dim);color:var(--green);border:1px solid #00C47A33}
+.p-amber{background:var(--amber-dim);color:var(--amber);border:1px solid #F5A32233}
+.p-red{background:var(--red-dim);color:var(--red);border:1px solid #E04F4F33}
+.p-blue{background:var(--blue-dim);color:var(--blue);border:1px solid #4B9EFF33}
+.p-muted{background:var(--surface2);color:var(--label);border:1px solid var(--border)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:15px 16px;
+border-top:2px solid var(--border)}
+.card.green{border-top-color:var(--green)}.card.amber{border-top-color:var(--amber)}
+.card.red{border-top-color:var(--red)}.card.blue{border-top-color:var(--blue)}
+.card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px}
+.card-title{font-size:13px;font-weight:600;color:var(--text);text-wrap:balance}
+.eyebrow{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.card-body{font-size:12px;line-height:1.65;color:var(--label);text-wrap:pretty}
+.card-body.want{color:var(--muted);margin-bottom:10px}
+.init{background:var(--surface);border:1px solid var(--border);border-radius:6px;
+padding:15px 16px;margin-bottom:10px}
+.init h3{font-size:13px;font-weight:600;margin-bottom:6px}
+.init p{font-size:12px;line-height:1.65;color:var(--label);text-wrap:pretty}
+.subcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;margin-top:10px}
+.subcard{background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:10px 12px}
+.subcard b{font-size:12px;color:var(--text)}
+.subcard span{display:block;font-size:10px;color:var(--muted);margin-top:3px;line-height:1.5}
+footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--border);
+font-size:10px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:640px){.kpi-grid{grid-template-columns:1fr 1fr}.meta{text-align:left}}
+</style>
+</head>
+<body>
+<header class="page-header">
+  <div>
+    <div class="dept">RetroStyle Games · BDM Department</div>
+    <h1>Sergey — Monthly Plan</h1>
+    <div class="period">November 2026 · Stylized PC/Console</div>
+  </div>
+  <div class="meta">Outbound BDM<br>snapshot 2026-11-02<br>source: BDM Dashboard</div>
+</header>
+<nav><a href='june-2026.html'>June 2026 · results</a><a href='july-2026.html'>July 2026 · results</a><a href='august-2026.html'>August 2026 · results</a><a href='september-2026.html'>September 2026 · plan</a><a href='october-2026.html'>October 2026 · results</a><a href='november-2026.html' class='on'>November 2026 · plan</a></nav>
+<section class='section'><div class='section-label'><span class='num'>01</span> Thesis of the month</div><div class='thesis'><div class='plain'>Листопад = повернути outbound $ і закрити діру в 3D. Ставка на тепле: свої клієнти, які злетіли, 17 EST з органіки і PC-контакти зі Скандинавії. Продаємо платний тест за $250 і швидкість, а не портфоліо.</div></div></section><section class='section'><div class='section-label'><span class='num'>02</span> Goals · November 2026 <span style='text-transform:none;letter-spacing:0'>(пропозиція)</span></div><div class='kpi-grid'><div class='kpi blue'><div class='lbl'>Requests</div><div class='val'>25</div><div class='sub'>target</div></div><div class='kpi blue'><div class='lbl'>EST+</div><div class='val'>15</div><div class='sub'>target</div></div><div class='kpi blue'><div class='lbl'>Test</div><div class='val'>5</div><div class='sub'>target</div></div><div class='kpi blue'><div class='lbl'>Deal</div><div class='val'>1</div><div class='sub'>target</div></div><div class='kpi blue'><div class='lbl'>$ Won · outbound</div><div class='val'>$10,000</div><div class='sub'>target</div></div><div class='kpi blue'><div class='lbl'>$ Won · весь напрямок</div><div class='val'>$25,000</div><div class='sub'>пропозиція</div></div><div class='kpi blue'><div class='lbl'>3D підтверджено</div><div class='val'>≥400<span style='font-size:12px'>md</span></div><div class='sub'>із 517 md у прогнозі</div></div><div class='kpi blue'><div class='lbl'>Скандинавія</div><div class='val'>100%</div><div class='sub'>фоловап по PC-контактах до 10.11</div></div><div class='kpi blue'><div class='lbl'>Передано AM</div><div class='val'>3/3</div><div class='sub'>клієнти після тестів</div></div></div></section><section class='section'><div class='section-label'><span class='num'>03</span> Month initiatives <span style='text-transform:none;letter-spacing:0'>(key moves · 5)</span></div><div class='init'><h3>1. Повернути те, що злетіло (217 md)</h3><p>По кожному: причина й нова дата входу до 09.11.</p><div class='subcards'><div class='subcard'><b>Tarock Interactive</b><span>109 md</span></div><div class='subcard'><b>E-Line Media</b><span>60 md · після тесту наступний скоуп</span></div><div class='subcard'><b>Memory Ware</b><span>20 md</span></div><div class='subcard'><b>Virtuos</b><span>20 md · субаутсорс - шлях до китів</span></div><div class='subcard'><b>Big Point</b><span>8 md</span></div></div></div><div class='init'><h3>2. Клієнтів після тестів передати AM</h3><p>Тест Won, але AM не призначений у жодного з трьох. Призначити AM і дату передачі цього тижня.</p><div class='subcards'><div class='subcard'><b>Deathcult Games</b><span>Won</span></div><div class='subcard'><b>E-Line Media</b><span>Won</span></div><div class='subcard'><b>Rezzil</b><span>Won</span></div></div></div><div class='init'><h3>3. EST → Test</h3><p>Apex Interactive ($10k): закрити тест. По решті 16 EST - фоловап з офером платного тесту $250 (шлях №3), ціль: 5 тестів.</p></div><div class='init'><h3>4. Дотиснути Скандинавію</h3><p>До 10.11 фоловап, усіх завести в Pipedrive як Offline Lead. Avalanche - кейси hard surface. Ace Games - довести 3D-тест.</p><div class='subcards'><div class='subcard'><b>EA DICE</b><span></span></div><div class='subcard'><b>Avalanche</b><span></span></div><div class='subcard'><b>Embark</b><span></span></div><div class='subcard'><b>Sharkmob</b><span></span></div><div class='subcard'><b>Mojang</b><span></span></div><div class='subcard'><b>Star Stable</b><span></span></div><div class='subcard'><b>Dead Astronauts</b><span></span></div></div></div><div class='init'><h3>5. Корзинка й аутбаунд</h3><p>Пропінг з 31 до 50+ на місяць. Хвиля по релізах лише для PC/консолей (сліпа зона з вересневого плану).</p></div></section><section class='section'><div class='section-label'><span class='num'>04</span> Потрібно від команди</div><div class='subcards'><div class='subcard'><b>Софія</b><span>Контекст зустрічей по PC-контактах зі Скандинавії, контакти в Pipedrive</span></div><div class='subcard'><b>AM · Софія / Маша / Віка</b><span>Забрати Deathcult, E-Line Media, Rezzil</span></div><div class='subcard'><b>Вікторія</b><span>Разом проводимо органіку з EST у тести</span></div><div class='subcard'><b>PM 3D</b><span>Підтвердження 3D на листопад у прогнозі наступного тижня</span></div></div></section>
+<footer><span>BDM Department · RetroStyle Games</span><span>November 2026 · plan</span></footer>
+</body>
+</html>
